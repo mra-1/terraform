@@ -1,0 +1,6 @@
+terraform taint will allow you to destroy a instance which 
+has been modified manually and will re deploy it from your 
+desired state once you run terraform apply again. prompt will say 
+resourcename.localname is tainted so must be replaced.
+
+terraform taint resourcename.localname - is the command

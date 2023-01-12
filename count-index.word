@@ -1,0 +1,39 @@
+resource "aws_instance" "instance" {
+  ami           = "ami-0b5eea76982371e91"
+  instance_type = "t2.micro"
+  count = 3 
+
+  tags = {
+    Name = var.instance-name[count.index] or name = "EC.${count.index}"
+  }
+}
+count allows you to make multiple resouces 
+count = 3 - means 3 resources will be made 
+
+  3 will be created with DEFAULT LOCAL names as 
+  instance[0]
+  instance[1]
+  instance[2]
+  
+  CONSOLE names identified in var file will specify a type = list 
+  with specific CONSOLE names - 
+     Name = var.instance-name[count.index]
+
+  to specify each NAME you will create a var.tf file and identify the 
+  variable and specify the type and default
+  
+   variable "instance-name" {
+  type = list
+  default = ["ec-1", "ec-2", "ec-3"]
+}
+  For a default setting of CONSOLE name
+    name = "EC.${count.index}"
+  this will make the names base of list order 
+  will start will EC.0, EC.1, EC.2 and continue depening on the count 
+  
+  "EC.${count.index}" 
+  LOCAL--------CONSOLE
+  instance[0] = EC.0
+  instance[1] = EC.1
+  instance[2] = EC.2
+  

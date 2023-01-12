@@ -1,0 +1,28 @@
+main.tf file
+ 
+resource "aws_instance" "tf-ec2-instance1" {
+ 
+    // Here we are just calling out our variable with the lookup function
+    ami                         = lookup(var.awsproperties, "ami")
+    instance_type               = lookup(var.awsproperties, "instancetype")
+    subnet_id                   = lookup(var.awsproperties, "subnetid")
+    associate_public_ip_address = lookup(var.awsproperties, "publicip")
+    key_name                    = lookup(var.awsproperties, "keyname")
+ 
+ 
+ 
+vars.tf file 
+ 
+variable "awsproperties" {
+    type = map
+    default = {
+        region          = "us-east-1"
+        vpc             = "vpc-04f8572839acef387"       // My AWS Default VPC ID
+        ami             = "ami-0b5eea76982371e91"       // Amazon Linux 5.10 AMI ID
+        instancetype    = "t2.micro"                    // Free Tier : t2.micro
+        subnetid        = "subnet-0f8c484736cca6160"    // Subnet ID of (us-east-1f) 
+        publicip        = true                          // Enable Public IP
+        keyname         = "centos-key"                  // Name of my Key
+        securitygroup   = "ssh-with-http"               // Name of my Security Group
+    }
+}

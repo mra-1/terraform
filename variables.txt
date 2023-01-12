@@ -1,0 +1,17 @@
+variables are used to define a value that needs to be inserted
+varibale work with a var.tf file or can be defined in the same config file
+you specify the variable and its name followed by the default = value
+to use varibale you will specify by var.varname
+
+variable "instancetype" {
+  default = "t2.micro"
+}
+
+resource "aws_instance" "var-ec2" {
+  ami = "ami-0b5eea76982371e91"
+  instance_type = var.instancetype
+
+  tags = {
+    Name = "var2"
+  }
+}

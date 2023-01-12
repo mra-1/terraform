@@ -1,0 +1,40 @@
+data can be fetched from variables or var files
+the different ways to get data is by list, map, string, number
+
+resource "aws_instance" "name" {
+   ami = var.map["ami2"] = "ami-935879465499479854"
+   instance_type = var.list[1] = "t2.micro"
+
+   tags = {
+   name = var.string = "tf-ec-1"
+  }
+}
+
+maps - key = value
+variable "map" {
+    type = map
+    default ={
+        ami1 = "ami-234758958749387598"
+        ami2 = "ami-935879465499479854"
+        ami3 = "ami-859438598020230950"
+    }
+}
+type = map
+ami1 = "ami-234758958749387598"
+ami2 = "ami-935879465499479854"
+ami3 = "ami-859438598020230950"
+
+list - 0,1,2,
+variable "list" {
+    type = list
+    default = ["t1.micro", "t2.micro", "t3.large"]
+}
+type = list
+["t1.micro", "t2.micro", "t3.large"]
+
+variable "string" {
+    type = string
+    default = "tf-ec-1"
+}
+type = string
+default = "tf-ec-1"

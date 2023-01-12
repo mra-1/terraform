@@ -1,0 +1,8 @@
+terraform plan -out=demoplan 
+
+-out will save the plan to a file wich is specifed 
+
+demoplan is the specifed file which the plan will be saved in
+
+so if anyone is to go and change the config file the plan is already saved
+and will deploy if you run terraform apply demoplan

@@ -1,0 +1,13 @@
+splat is a expression [*] it is used in outputs that will print your 
+desired output.
+ resource "aws_iam_user" "lb" {
+    name = "iamuser.${count.index}"
+    count = 3
+}
+
+output "arns" {
+    value = aws_iam_user.lb[2].arns
+}
+
+this will print out the ARN for the last user created since count works 
+in a list format 0,1,2.
